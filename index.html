@@ -3,23 +3,28 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Electron Mangareader</title>
+<title>Yomu</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg" />
 <style>
   :root {
     color-scheme: light dark;
     --bg: #0f1115;
+    --bg-soft: #14171d;
     --fg: #eef0f3;
     --muted: #9aa3af;
     --accent: #6ea8fe;
+    --accent-2: #8f7bff;
     --card: #171a21;
     --border: #262b35;
   }
   @media (prefers-color-scheme: light) {
     :root {
       --bg: #ffffff;
+      --bg-soft: #f7f8fa;
       --fg: #14161a;
       --muted: #555c66;
       --accent: #2563eb;
+      --accent-2: #6d5bd0;
       --card: #f6f7f9;
       --border: #e3e6ea;
     }
@@ -40,10 +45,12 @@
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
     z-index: 10;
   }
-  .brand { font-weight: 700; font-size: 1.1rem; }
+  .brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.05rem; }
+  .brand svg { width: 26px; height: 26px; border-radius: 7px; flex-shrink: 0; }
   .lang-switch { display: flex; gap: 0.4rem; }
   .lang-switch button {
     background: transparent;
@@ -58,32 +65,103 @@
     color: var(--fg);
     border-color: var(--accent);
   }
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 6rem;
+
+  main { max-width: 760px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+
+  .hero {
+    text-align: center;
+    padding: 4.5rem 1rem 2.5rem;
   }
-  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-  .tagline { color: var(--muted); margin-top: 0; }
-  .intro {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 2rem 0;
-    white-space: pre-wrap;
-  }
+  .hero-logo { width: 84px; height: 84px; border-radius: 22px; box-shadow: 0 12px 32px rgba(37, 99, 235, 0.28); }
+  .hero h1 { font-size: 2.6rem; margin: 1.3rem 0 0.5rem; letter-spacing: -0.02em; }
+  .hero .tagline { color: var(--muted); margin: 0 auto; max-width: 34rem; font-size: 1.05rem; }
+
+  .cta { margin-top: 1.8rem; }
   .download-btn {
-    display: inline-block;
-    background: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
     color: #fff;
     text-decoration: none;
-    padding: 0.85rem 1.6rem;
-    border-radius: 8px;
+    padding: 0.9rem 1.8rem;
+    border-radius: 10px;
     font-weight: 600;
-    margin-top: 0.5rem;
+    font-size: 1.02rem;
+    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.32);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .download-note { color: var(--muted); font-size: 0.85rem; margin-top: 0.6rem; }
+  .download-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(37, 99, 235, 0.4); }
+  .download-btn svg { width: 18px; height: 18px; }
+  .download-note { color: var(--muted); font-size: 0.85rem; margin-top: 0.7rem; }
+
+  section.block { margin: 3.2rem 0; }
+  .block h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 1.1rem;
+    text-align: center;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+  }
+  .feature-card .icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+  }
+  .feature-card .icon svg { width: 24px; height: 24px; }
+  .feature-card .label { font-weight: 600; font-size: 0.95rem; }
+
+  .format-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .format-row .group-label {
+    width: 100%;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0.9rem 0 0.4rem;
+  }
+  .format-row .group-label:first-child { margin-top: 0; }
+  .pill {
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--fg);
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.85rem;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
 
   .coffee-banner {
     position: fixed;
@@ -121,11 +199,36 @@
     padding: 0 0.2rem;
   }
   .coffee-text { font-size: 0.9rem; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 3rem 1rem 2rem; }
+    .hero h1 { font-size: 2.1rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <header>
-  <span class="brand">Electron Mangareader</span>
+  <span class="brand">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="bgHeader" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6ea8fe"/>
+          <stop offset="1" stop-color="#2563eb"/>
+        </linearGradient>
+      </defs>
+      <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bgHeader)"/>
+      <rect x="14" y="12" width="24" height="32" rx="3" fill="#ffffff" opacity="0.35"/>
+      <rect x="18" y="16" width="24" height="32" rx="3" fill="#ffffff" opacity="0.65"/>
+      <rect x="22" y="20" width="24" height="32" rx="3" fill="#ffffff"/>
+      <rect x="26" y="26" width="16" height="2.5" rx="1.25" fill="#2563eb" opacity="0.55"/>
+      <rect x="26" y="31" width="16" height="2.5" rx="1.25" fill="#2563eb" opacity="0.55"/>
+      <rect x="26" y="36" width="10" height="2.5" rx="1.25" fill="#2563eb" opacity="0.55"/>
+      <circle cx="46" cy="46" r="10" fill="#ffffff"/>
+      <path d="M43 41.5 L52 46 L43 50.5 Z" fill="#2563eb"/>
+    </svg>
+    Yomu
+  </span>
   <div class="lang-switch" id="lang-switch">
     <button data-lang="ko">한국어</button>
     <button data-lang="en">EN</button>
@@ -135,14 +238,53 @@
 </header>
 
 <main>
-  <h1 data-i18n="title"></h1>
-  <p class="tagline" data-i18n="tagline"></p>
+  <div class="hero">
+    <img class="hero-logo" src="icon.svg" alt="Yomu" />
+    <h1 data-i18n="title"></h1>
+    <p class="tagline" data-i18n="tagline"></p>
+    <div class="cta">
+      <a class="download-btn" id="download-btn" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="downloadLabel"></span>
+      </a>
+      <p class="download-note" data-i18n="downloadNote"></p>
+    </div>
+  </div>
 
-  <div class="intro" data-i18n="intro"></div>
+  <section class="block">
+    <h2 data-i18n="featuresHeading"></h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M18 13l-6 6-6-6"/><path d="M6 5h12"/></svg>
+        </div>
+        <div class="label" data-i18n="featureScroll"></div>
+      </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M9 9l6 3-6 3z" fill="currentColor" stroke="none"/><path d="M3 20h18"/></svg>
+        </div>
+        <div class="label" data-i18n="featureSlideshow"></div>
+      </div>
+    </div>
+  </section>
 
-  <a class="download-btn" id="download-btn" href="#" data-i18n="downloadLabel"></a>
-  <p class="download-note" data-i18n="downloadNote"></p>
+  <section class="block">
+    <h2 data-i18n="formatsHeading"></h2>
+    <div class="format-row">
+      <span class="group-label" data-i18n="formatImagesLabel"></span>
+      <span class="pill">PNG</span>
+      <span class="pill">JPG</span>
+      <span class="pill">GIF</span>
+      <span class="pill">WEBP</span>
+      <span class="group-label" data-i18n="formatArchivesLabel"></span>
+      <span class="pill">ZIP</span>
+      <span class="pill">CBZ</span>
+    </div>
+  </section>
 </main>
+
+<footer data-i18n="footer"></footer>
 
 <div class="coffee-banner" id="coffee-banner">
   <span class="coffee-text" data-i18n="coffeeText"></span>
@@ -154,7 +296,7 @@
   // GitHub "latest release" stable download URL for this repo. The asset
   // filename must stay in sync with whatever gets attached to each Release.
   const DOWNLOAD_URL =
-    'https://github.com/hak2da/electron-mangareader-site/releases/latest/download/ElectronMangareader-win-portable.exe'
+    'https://github.com/hak2da/electron-mangareader-site/releases/latest/download/Yomu-win-portable.exe'
 
   // TODO(user): replace with your real scheduling link (Calendly, etc.) or a
   // contact method before this goes live for real visitors.
@@ -162,68 +304,64 @@
 
   const STRINGS = {
     ko: {
-      title: 'Electron Mangareader',
-      tagline: '연속 스크롤 만화/코믹 뷰어 — 데스크톱 앱',
-      intro:
-        '같이 만들고 있는 만화 뷰어입니다.\n\n' +
-        '주요 특징\n' +
-        '- 스크롤로 편하게 넘겨보기 (연속 스크롤)\n' +
-        '- 슬라이드쇼\n\n' +
-        '지원 포맷\n' +
-        '- 이미지: PNG, JPG, GIF, WEBP\n' +
-        '- 압축 파일: ZIP, CBZ',
+      title: 'Yomu',
+      tagline: '같이 만들고 있는 연속 스크롤 만화/코믹 뷰어 — 데스크톱 앱',
+      featuresHeading: '주요 특징',
+      featureScroll: '스크롤로 편하게 넘겨보기',
+      featureSlideshow: '슬라이드쇼',
+      formatsHeading: '지원 포맷',
+      formatImagesLabel: '이미지',
+      formatArchivesLabel: '압축 파일',
       downloadLabel: 'Windows용 다운로드',
       downloadNote: '무료 · Windows 포터블 실행 파일 (설치 불필요)',
       coffeeText: '여기까지 읽어주셨네요, 커피챗 어떠세요?',
-      coffeeCta: '커피챗 신청'
+      coffeeCta: '커피챗 신청',
+      footer: '© 2026 Yomu'
     },
     en: {
-      title: 'Electron Mangareader',
-      tagline: 'A continuous-scroll comic/manga viewer for the desktop',
-      intro:
-        'A manga/comic viewer being built.\n\n' +
-        'Key features\n' +
-        '- Browse by scrolling (continuous scroll)\n' +
-        '- Slideshow\n\n' +
-        'Supported formats\n' +
-        '- Images: PNG, JPG, GIF, WEBP\n' +
-        '- Archives: ZIP, CBZ',
+      title: 'Yomu',
+      tagline: 'A continuous-scroll comic/manga viewer for the desktop, built in the open',
+      featuresHeading: 'Key features',
+      featureScroll: 'Browse by scrolling',
+      featureSlideshow: 'Slideshow',
+      formatsHeading: 'Supported formats',
+      formatImagesLabel: 'Images',
+      formatArchivesLabel: 'Archives',
       downloadLabel: 'Download for Windows',
       downloadNote: 'Free · Windows portable executable (no install needed)',
       coffeeText: "You've read this far — want to grab a coffee chat?",
-      coffeeCta: 'Book a coffee chat'
+      coffeeCta: 'Book a coffee chat',
+      footer: '© 2026 Yomu'
     },
     zh: {
-      title: 'Electron Mangareader',
-      tagline: '桌面端连续滚动漫画阅读器',
-      intro:
-        '正在开发中的漫画阅读器。\n\n' +
-        '主要特点\n' +
-        '- 可通过滚动轻松浏览（连续滚动）\n' +
-        '- 幻灯片播放\n\n' +
-        '支持格式\n' +
-        '- 图片：PNG、JPG、GIF、WEBP\n' +
-        '- 压缩包：ZIP、CBZ',
+      title: 'Yomu',
+      tagline: '正在开发中的桌面端连续滚动漫画阅读器',
+      featuresHeading: '主要特点',
+      featureScroll: '滚动轻松浏览',
+      featureSlideshow: '幻灯片播放',
+      formatsHeading: '支持格式',
+      formatImagesLabel: '图片',
+      formatArchivesLabel: '压缩包',
       downloadLabel: '下载 Windows 版',
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
       coffeeText: '看到这里了，要不要聊聊？',
-      coffeeCta: '预约咖啡聊天'
+      coffeeCta: '预约咖啡聊天',
+      footer: '© 2026 Yomu'
     },
     ja: {
-      title: 'Electron Mangareader',
-      tagline: 'デスクトップ向け連続スクロール漫画ビューア',
-      intro:
-        '制作中のマンガビューアです。\n\n' +
-        '主な特徴\n' +
-        '- スクロールで気軽に閲覧（連続スクロール）\n' +
-        '- スライドショー\n\n' +
-        '対応フォーマット\n' +
-        '- 画像：PNG、JPG、GIF、WEBP\n' +
-        '- アーカイブ：ZIP、CBZ',
+      title: 'Yomu',
+      tagline: '制作中のデスクトップ向け連続スクロール漫画ビューア',
+      featuresHeading: '主な特徴',
+      featureScroll: 'スクロールで気軽に閲覧',
+      featureSlideshow: 'スライドショー',
+      formatsHeading: '対応フォーマット',
+      formatImagesLabel: '画像',
+      formatArchivesLabel: 'アーカイブ',
       downloadLabel: 'Windows版をダウンロード',
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
       coffeeText: 'ここまで読んでいただけたら、コーヒーチャットどうですか？',
-      coffeeCta: 'コーヒーチャットを予約'
+      coffeeCta: 'コーヒーチャットを予約',
+      footer: '© 2026 Yomu'
     }
   }
 
