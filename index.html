@@ -163,7 +163,7 @@
     border-top: 1px solid var(--border);
   }
 
-  .coffee-banner {
+  .support-banner {
     position: fixed;
     left: 50%;
     bottom: 1.25rem;
@@ -180,8 +180,8 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     z-index: 20;
   }
-  .coffee-banner.visible { transform: translate(-50%, 0); }
-  .coffee-banner a {
+  .support-banner.visible { transform: translate(-50%, 0); }
+  .support-banner a {
     background: var(--accent);
     color: #fff;
     text-decoration: none;
@@ -190,7 +190,7 @@
     font-size: 0.9rem;
     white-space: nowrap;
   }
-  .coffee-banner button.close {
+  .support-banner button.close {
     background: none;
     border: none;
     color: var(--muted);
@@ -198,7 +198,7 @@
     font-size: 1rem;
     padding: 0 0.2rem;
   }
-  .coffee-text { font-size: 0.9rem; }
+  .support-text { font-size: 0.9rem; }
 
   @media (max-width: 480px) {
     .hero { padding: 3rem 1rem 2rem; }
@@ -286,10 +286,10 @@
 
 <footer data-i18n="footer"></footer>
 
-<div class="coffee-banner" id="coffee-banner">
-  <span class="coffee-text" data-i18n="coffeeText"></span>
-  <a href="#" id="coffee-link" data-i18n="coffeeCta"></a>
-  <button class="close" id="coffee-close" aria-label="close">&times;</button>
+<div class="support-banner" id="support-banner">
+  <span class="support-text" data-i18n="supportText"></span>
+  <a href="#" id="support-link" data-i18n="supportCta"></a>
+  <button class="close" id="support-close" aria-label="close">&times;</button>
 </div>
 
 <script>
@@ -298,9 +298,9 @@
   const DOWNLOAD_URL =
     'https://github.com/hak2da/electron-mangareader-site/releases/latest/download/Yomu-win-portable.exe'
 
-  // TODO(user): replace with your real scheduling link (Calendly, etc.) or a
-  // contact method before this goes live for real visitors.
-  const COFFEE_CHAT_URL = '#'
+  // TODO(user): replace with your real Buy Me a Coffee page once you've signed up
+  // (https://www.buymeacoffee.com/<your-username>).
+  const BUY_ME_A_COFFEE_URL = 'https://www.buymeacoffee.com/yourusername'
 
   const STRINGS = {
     ko: {
@@ -314,8 +314,8 @@
       formatArchivesLabel: '압축 파일',
       downloadLabel: 'Windows용 다운로드',
       downloadNote: '무료 · Windows 포터블 실행 파일 (설치 불필요)',
-      coffeeText: '여기까지 읽어주셨네요, 커피챗 어떠세요?',
-      coffeeCta: '커피챗 신청',
+      supportText: '이 앱이 마음에 드셨다면, 커피 한 잔 사주세요 ☕',
+      supportCta: '커피 사주기',
       footer: '© 2026 Yomu'
     },
     en: {
@@ -329,8 +329,8 @@
       formatArchivesLabel: 'Archives',
       downloadLabel: 'Download for Windows',
       downloadNote: 'Free · Windows portable executable (no install needed)',
-      coffeeText: "You've read this far — want to grab a coffee chat?",
-      coffeeCta: 'Book a coffee chat',
+      supportText: 'If you like this app, buy me a coffee ☕',
+      supportCta: 'Buy me a coffee',
       footer: '© 2026 Yomu'
     },
     zh: {
@@ -344,8 +344,8 @@
       formatArchivesLabel: '压缩包',
       downloadLabel: '下载 Windows 版',
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
-      coffeeText: '看到这里了，要不要聊聊？',
-      coffeeCta: '预约咖啡聊天',
+      supportText: '如果你喜欢这个应用，请我喝杯咖啡吧 ☕',
+      supportCta: '请我喝咖啡',
       footer: '© 2026 Yomu'
     },
     ja: {
@@ -359,8 +359,8 @@
       formatArchivesLabel: 'アーカイブ',
       downloadLabel: 'Windows版をダウンロード',
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
-      coffeeText: 'ここまで読んでいただけたら、コーヒーチャットどうですか？',
-      coffeeCta: 'コーヒーチャットを予約',
+      supportText: 'このアプリが気に入ったら、コーヒーをおごってください ☕',
+      supportCta: 'コーヒーをおごる',
       footer: '© 2026 Yomu'
     }
   }
@@ -396,14 +396,14 @@
   })
 
   document.getElementById('download-btn').href = DOWNLOAD_URL
-  document.getElementById('coffee-link').href = COFFEE_CHAT_URL
+  document.getElementById('support-link').href = BUY_ME_A_COFFEE_URL
 
   applyLang(detectDefaultLang())
 
-  // Coffee-chat banner: reveal once the reader has scrolled a meaningful way
+  // Support banner: reveal once the reader has scrolled a meaningful way
   // down the page (not just a quick glance), then leave it up — no per-visit
   // counting needed since the trigger is scroll depth on the current page.
-  const banner = document.getElementById('coffee-banner')
+  const banner = document.getElementById('support-banner')
   let shown = false
   function checkScrollDepth() {
     if (shown) return
@@ -417,7 +417,7 @@
   window.addEventListener('scroll', checkScrollDepth, { passive: true })
   checkScrollDepth()
 
-  document.getElementById('coffee-close').addEventListener('click', () => {
+  document.getElementById('support-close').addEventListener('click', () => {
     banner.classList.remove('visible')
   })
 </script>
