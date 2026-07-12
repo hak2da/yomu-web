@@ -76,6 +76,16 @@
   .hero h1 { font-size: 2.6rem; margin: 1.3rem 0 0.5rem; letter-spacing: -0.02em; }
   .hero .tagline { color: var(--muted); margin: 0 auto; max-width: 34rem; font-size: 1.05rem; }
 
+  .hero-demo {
+    margin: 2.4rem auto 0;
+    max-width: 400px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  }
+  .hero-demo img { display: block; width: 100%; height: auto; }
+
   .cta { margin-top: 1.8rem; }
   .download-btn {
     display: inline-flex;
@@ -273,6 +283,9 @@
         <span data-i18n="downloadLabel"></span>
       </a>
       <p class="download-note" data-i18n="downloadNote"></p>
+    </div>
+    <div class="hero-demo">
+      <img src="demo-slideshow.gif" alt="Yomu slideshow demo" width="640" height="344" />
     </div>
   </div>
 
