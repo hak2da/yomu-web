@@ -234,6 +234,8 @@
     <button data-lang="en">EN</button>
     <button data-lang="zh">中文</button>
     <button data-lang="ja">日本語</button>
+    <button data-lang="es">ES</button>
+    <button data-lang="fr">FR</button>
   </div>
 </header>
 
@@ -360,6 +362,36 @@
       supportText: 'このアプリが気に入ったら、コーヒーをおごってください ☕',
       supportCta: 'コーヒーをおごる',
       footer: '© 2026 Yomu'
+    },
+    es: {
+      title: 'Yomu',
+      tagline: 'Un visor de cómics/manga de scroll continuo para escritorio, en desarrollo abierto',
+      featuresHeading: 'Características principales',
+      featureScroll: 'Navega con scroll',
+      featureSlideshow: 'Presentación de diapositivas',
+      formatsHeading: 'Formatos compatibles',
+      formatImagesLabel: 'Imágenes',
+      formatArchivesLabel: 'Archivos comprimidos',
+      downloadLabel: 'Descargar para Windows',
+      downloadNote: 'Gratis · Ejecutable portátil para Windows (no requiere instalación)',
+      supportText: 'Si te gusta esta app, invítame un café ☕',
+      supportCta: 'Invitar un café',
+      footer: '© 2026 Yomu'
+    },
+    fr: {
+      title: 'Yomu',
+      tagline: 'Un lecteur de manga/BD à défilement continu pour ordinateur, développé en public',
+      featuresHeading: 'Fonctionnalités clés',
+      featureScroll: 'Parcourir en défilant',
+      featureSlideshow: 'Diaporama',
+      formatsHeading: 'Formats pris en charge',
+      formatImagesLabel: 'Images',
+      formatArchivesLabel: 'Archives',
+      downloadLabel: 'Télécharger pour Windows',
+      downloadNote: 'Gratuit · Exécutable portable Windows (aucune installation requise)',
+      supportText: "Si vous aimez cette appli, offrez-moi un café ☕",
+      supportCta: 'Offrir un café',
+      footer: '© 2026 Yomu'
     }
   }
 
@@ -372,6 +404,8 @@
     if (nav.startsWith('ko')) return 'ko'
     if (nav.startsWith('zh')) return 'zh'
     if (nav.startsWith('ja')) return 'ja'
+    if (nav.startsWith('es')) return 'es'
+    if (nav.startsWith('fr')) return 'fr'
     return 'en'
   }
 
@@ -398,16 +432,16 @@
 
   applyLang(detectDefaultLang())
 
-  // Support banner: reveal once the reader has scrolled a meaningful way
-  // down the page (not just a quick glance), then leave it up — no per-visit
-  // counting needed since the trigger is scroll depth on the current page.
+  // Support banner: reveal once the reader has scrolled all the way to the
+  // bottom of the page, then leave it up — no per-visit counting needed
+  // since the trigger is scroll depth on the current page.
   const banner = document.getElementById('support-banner')
   let shown = false
   function checkScrollDepth() {
     if (shown) return
     const scrolled = window.scrollY + window.innerHeight
     const full = document.documentElement.scrollHeight
-    if (full > 0 && scrolled / full >= 0.65) {
+    if (full > 0 && full - scrolled <= 4) {
       banner.classList.add('visible')
       shown = true
     }
