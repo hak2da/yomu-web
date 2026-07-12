@@ -107,7 +107,7 @@
 
   .feature-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
   .feature-card {
@@ -153,6 +153,29 @@
     padding: 0.35rem 0.85rem;
     font-size: 0.85rem;
     font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  }
+
+  .patch-entry {
+    display: flex;
+    gap: 1.1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem 1.3rem;
+  }
+  .patch-date {
+    flex-shrink: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
+  .patch-title { font-weight: 600; margin-bottom: 0.35rem; }
+  .patch-body p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .patch-entry + .patch-entry { margin-top: 0.9rem; }
+  @media (max-width: 480px) {
+    .patch-entry { flex-direction: column; gap: 0.4rem; }
   }
 
   footer {
@@ -268,6 +291,12 @@
         </div>
         <div class="label" data-i18n="featureSlideshow"></div>
       </div>
+      <div class="feature-card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="14" height="13" rx="2"/><path d="M8.3 9.5l4.4 2.5-4.4 2.5z" fill="currentColor" stroke="none"/><path d="M20 9l1.5-1v8L20 15"/></svg>
+        </div>
+        <div class="label" data-i18n="featureVideo"></div>
+      </div>
     </div>
   </section>
 
@@ -279,9 +308,30 @@
       <span class="pill">JPG</span>
       <span class="pill">GIF</span>
       <span class="pill">WEBP</span>
+      <span class="group-label" data-i18n="formatVideosLabel"></span>
+      <span class="pill">MP4</span>
+      <span class="pill">WEBM</span>
       <span class="group-label" data-i18n="formatArchivesLabel"></span>
       <span class="pill">ZIP</span>
       <span class="pill">CBZ</span>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 data-i18n="patchNotesHeading"></h2>
+    <div class="patch-entry">
+      <div class="patch-date">2026.07.11</div>
+      <div class="patch-body">
+        <div class="patch-title" data-i18n="patchLatestTitle"></div>
+        <p data-i18n="patchLatestBody"></p>
+      </div>
+    </div>
+    <div class="patch-entry">
+      <div class="patch-date">2026.07.11</div>
+      <div class="patch-body">
+        <div class="patch-title" data-i18n="patchPrevTitle"></div>
+        <p data-i18n="patchPrevBody"></p>
+      </div>
     </div>
   </section>
 </main>
@@ -309,13 +359,22 @@
       featuresHeading: '주요 특징',
       featureScroll: '스크롤로 편하게 넘겨보기',
       featureSlideshow: '슬라이드쇼',
+      featureVideo: '영상도 함께 재생',
       formatsHeading: '지원 포맷',
       formatImagesLabel: '이미지',
+      formatVideosLabel: '영상',
       formatArchivesLabel: '압축 파일',
       downloadLabel: 'Windows용 다운로드',
       downloadNote: '무료 · Windows 포터블 실행 파일 (설치 불필요)',
+      patchNotesHeading: '패치 노트',
+      patchLatestTitle: '대용량 영상 폴더 성능 개선',
+      patchLatestBody:
+        '영상이 많은 폴더에서 전체화면 전환 시 발생하던 지연을 대폭 줄였고, 영상 라이브러리가 아주 클 때(1000개 이상) 일부 영상이 재생되지 않던 문제를 수정했습니다. 슬라이드쇼 중 수동으로 페이지를 넘기면 자동전환 타이머도 그 시점부터 새로 시작됩니다.',
+      patchPrevTitle: '영상 재생 지원 추가',
+      patchPrevBody:
+        '폴더나 압축 파일에 MP4·WebM 영상이 섞여 있어도 자동으로 재생됩니다. 반복 재생, 볼륨 조절은 물론, 재생이 안 되는 영상을 자동으로 복구하는 기능도 포함됐습니다.',
       supportText: '이 앱이 마음에 드셨다면, ☕',
-      supportCta: '커피 사주기',
+      supportCta: '커피 사주기~',
       footer: '© 2026 Yomu'
     },
     en: {
@@ -324,11 +383,20 @@
       featuresHeading: 'Key features',
       featureScroll: 'Browse by scrolling',
       featureSlideshow: 'Slideshow',
+      featureVideo: 'Videos play too',
       formatsHeading: 'Supported formats',
       formatImagesLabel: 'Images',
+      formatVideosLabel: 'Video',
       formatArchivesLabel: 'Archives',
       downloadLabel: 'Download for Windows',
       downloadNote: 'Free · Windows portable executable (no install needed)',
+      patchNotesHeading: 'Patch notes',
+      patchLatestTitle: 'Performance improvements for large video folders',
+      patchLatestBody:
+        'Fixed the fullscreen-toggle delay in folders with lots of videos, and a bug where some videos in very large libraries (1000+) wouldn’t play at all. Manually navigating during a slideshow now also resets its auto-advance countdown.',
+      patchPrevTitle: 'Added video playback support',
+      patchPrevBody:
+        'MP4/WebM videos mixed into a folder or archive now play automatically, with looping and volume control — plus automatic repair for videos that otherwise wouldn’t play.',
       supportText: 'If you like this app, buy me a coffee ☕',
       supportCta: 'Buy me a coffee',
       footer: '© 2026 Yomu'
@@ -339,9 +407,18 @@
       featuresHeading: '主要特点',
       featureScroll: '滚动轻松浏览',
       featureSlideshow: '幻灯片播放',
+      featureVideo: '也能播放视频',
       formatsHeading: '支持格式',
       formatImagesLabel: '图片',
+      formatVideosLabel: '视频',
       formatArchivesLabel: '压缩包',
+      patchNotesHeading: '更新日志',
+      patchLatestTitle: '大型视频文件夹性能优化',
+      patchLatestBody:
+        '修复了视频较多的文件夹在切换全屏时的延迟问题，以及超大视频库（1000+）中部分视频完全无法播放的问题。幻灯片播放中手动翻页时，自动切换的倒计时也会重新开始。',
+      patchPrevTitle: '新增视频播放支持',
+      patchPrevBody:
+        '文件夹或压缩包中混杂的 MP4/WebM 视频现在会自动播放，支持循环播放和音量调节，还能自动修复无法播放的视频。',
       downloadLabel: '下载 Windows 版',
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
       supportText: '如果你喜欢这个应用，请我喝杯咖啡吧 ☕',
@@ -354,9 +431,18 @@
       featuresHeading: '主な特徴',
       featureScroll: 'スクロールで気軽に閲覧',
       featureSlideshow: 'スライドショー',
+      featureVideo: '動画も再生',
       formatsHeading: '対応フォーマット',
       formatImagesLabel: '画像',
+      formatVideosLabel: '動画',
       formatArchivesLabel: 'アーカイブ',
+      patchNotesHeading: 'パッチノート',
+      patchLatestTitle: '大量動画フォルダのパフォーマンス改善',
+      patchLatestBody:
+        '動画が多いフォルダで全画面切り替え時に発生していた遅延を大幅に改善し、動画ライブラリが非常に大きい場合（1000本以上）に一部の動画が再生されない問題を修正しました。スライドショー中に手動でページを送ると、自動切り替えのカウントダウンもその時点からやり直されます。',
+      patchPrevTitle: '動画再生サポートを追加',
+      patchPrevBody:
+        'フォルダやアーカイブに混在する MP4/WebM 動画が自動的に再生されるようになりました。ループ再生・音量調整に加え、再生できない動画を自動的に修復する機能にも対応しています。',
       downloadLabel: 'Windows版をダウンロード',
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
       supportText: 'このアプリが気に入ったら、コーヒーをおごってください ☕',
