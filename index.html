@@ -114,6 +114,7 @@
   .download-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(37, 99, 235, 0.4); }
   .download-btn svg { width: 18px; height: 18px; }
   .download-note { color: var(--muted); font-size: 0.85rem; margin-top: 0.7rem; }
+  .download-version { color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; opacity: 0.75; }
 
   section.block { margin: 3.2rem 0; }
   .block h2 {
@@ -296,6 +297,7 @@
         <span data-i18n="downloadLabel"></span>
       </a>
       <p class="download-note" data-i18n="downloadNote"></p>
+      <p class="download-version" id="download-version"></p>
     </div>
     <div class="hero-demo">
       <img src="demo-slideshow.gif" alt="Yomu slideshow demo" width="640" height="344" />
@@ -541,6 +543,18 @@
 
   document.getElementById('download-btn').href = DOWNLOAD_URL
   document.getElementById('support-link').href = KOFI_URL
+
+  // Pulled from the Releases API rather than hardcoded, so a routine release
+  // (which already just attaches an exe under the same fixed name — see
+  // DOWNLOAD_URL's comment) doesn't also require editing this page.
+  fetch('https://api.github.com/repos/hak2da/yomu-web/releases/latest')
+    .then((res) => (res.ok ? res.json() : null))
+    .then((data) => {
+      if (data && data.tag_name) {
+        document.getElementById('download-version').textContent = data.tag_name
+      }
+    })
+    .catch(() => {})
 
   applyLang(detectDefaultLang())
 
