@@ -113,7 +113,21 @@
   }
   .download-btn:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(37, 99, 235, 0.4); }
   .download-btn svg { width: 18px; height: 18px; }
+  .download-btn.secondary {
+    margin-top: 1.1rem;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    box-shadow: none;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.94rem;
+  }
+  .download-btn.secondary:hover {
+    background: rgba(37, 99, 235, 0.08);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+  }
   .download-note { color: var(--muted); font-size: 0.85rem; margin-top: 0.7rem; }
+  .download-note.installer { margin-top: 0.4rem; }
   .download-version { color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; opacity: 0.75; }
 
   section.block { margin: 3.2rem 0; }
@@ -298,6 +312,11 @@
       </a>
       <p class="download-note" data-i18n="downloadNote"></p>
       <p class="download-version" id="download-version"></p>
+      <a class="download-btn secondary" id="download-installer-btn" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
+        <span data-i18n="downloadInstallerLabel"></span>
+      </a>
+      <p class="download-note installer" data-i18n="downloadInstallerNote"></p>
     </div>
     <div class="hero-demo">
       <img src="demo-slideshow.gif" alt="Yomu slideshow demo" width="640" height="344" />
@@ -385,6 +404,11 @@
   const DOWNLOAD_URL =
     'https://github.com/hak2da/yomu-web/releases/latest/download/Yomu-win-portable.exe'
 
+  // Installer build (NSIS). Version-less asset name so this stays valid across releases,
+  // same as the portable URL above.
+  const INSTALLER_URL =
+    'https://github.com/hak2da/yomu-web/releases/latest/download/Yomu-win-setup.exe'
+
   const KOFI_URL = 'https://ko-fi.com/oklab'
 
   const STRINGS = {
@@ -401,6 +425,8 @@
       formatArchivesLabel: '압축 파일',
       downloadLabel: 'Windows용 다운로드',
       downloadNote: '무료 · Windows 포터블 실행 파일 (설치 불필요)',
+      downloadInstallerLabel: '설치 버전 다운로드',
+      downloadInstallerNote: '앱 실행이 더 빠릅니다 · 시작 메뉴 바로가기',
       patchNotesHeading: '패치 노트',
       patchLatestTitle: '키보드 내비게이션 · 커서 자동 숨김 추가',
       patchLatestBody:
@@ -428,6 +454,8 @@
       formatArchivesLabel: 'Archives',
       downloadLabel: 'Download for Windows',
       downloadNote: 'Free · Windows portable executable (no install needed)',
+      downloadInstallerLabel: 'Download installer',
+      downloadInstallerNote: 'Faster app startup · Start Menu shortcut',
       patchNotesHeading: 'Patch notes',
       patchLatestTitle: 'Keyboard navigation, auto-hiding cursor',
       patchLatestBody:
@@ -462,6 +490,8 @@
         '修复了视频较多的文件夹在切换全屏时的延迟问题，以及超大视频库（1000+）中部分视频完全无法播放的问题。幻灯片播放中手动翻页时，自动切换的倒计时也会重新开始。',
       downloadLabel: '下载 Windows 版',
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
+      downloadInstallerLabel: '下载安装版',
+      downloadInstallerNote: '应用启动更快 · 开始菜单快捷方式',
       patchV070Title: '数千张照片的超大文件夹也能瞬间打开',
       patchV070Body:
         '包含数千甚至上万张图片的文件夹现在可以立即打开，无需等待。先显示你点击的照片，滚动更加流畅，并会预加载接下来的照片，滚动时不再出现黑屏闪烁。启动速度更快，窗口标题会显示文件名和页码，并新增了安装版。',
@@ -489,6 +519,8 @@
         '動画が多いフォルダで全画面切り替え時に発生していた遅延を大幅に改善し、動画ライブラリが非常に大きい場合（1000本以上）に一部の動画が再生されない問題を修正しました。スライドショー中に手動でページを送ると、自動切り替えのカウントダウンもその時点からやり直されます。',
       downloadLabel: 'Windows版をダウンロード',
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
+      downloadInstallerLabel: 'インストーラー版をダウンロード',
+      downloadInstallerNote: 'アプリの起動が速い · スタートメニューのショートカット',
       patchV070Title: '数千枚を超える大容量フォルダも即座に開く',
       patchV070Body:
         '画像が数千〜数万枚あるフォルダも待たずにすぐ開きます。クリックした写真が先に表示され、スクロールがより滑らかになり、次の写真を先読みするのでスクロール時の黒い点滅が減りました。起動も速くなり、ウィンドウタイトルにファイル名とページ位置が表示され、インストーラー版も追加しました。',
@@ -507,6 +539,8 @@
       formatArchivesLabel: 'Archivos comprimidos',
       downloadLabel: 'Descargar para Windows',
       downloadNote: 'Gratis · Ejecutable portátil para Windows (no requiere instalación)',
+      downloadInstallerLabel: 'Descargar instalador',
+      downloadInstallerNote: 'Inicio de la app más rápido · Acceso directo en el menú Inicio',
       patchV070Title: 'Abre al instante carpetas enormes con miles de fotos',
       patchV070Body:
         'Las carpetas con miles —incluso decenas de miles— de imágenes ahora se abren de inmediato, sin esperas. La foto en la que hiciste clic aparece primero, el desplazamiento es más fluido y las fotos siguientes se precargan para que no parpadeen en negro al desplazarte. El inicio es más rápido, el título de la ventana muestra el nombre del archivo y la posición de página, y ahora también hay una versión con instalador.',
@@ -525,6 +559,8 @@
       formatArchivesLabel: 'Archives',
       downloadLabel: 'Télécharger pour Windows',
       downloadNote: 'Gratuit · Exécutable portable Windows (aucune installation requise)',
+      downloadInstallerLabel: 'Télécharger l’installateur',
+      downloadInstallerNote: 'Démarrage de l’app plus rapide · Raccourci dans le menu Démarrer',
       patchV070Title: 'Ouvre instantanément d’énormes dossiers de milliers de photos',
       patchV070Body:
         'Les dossiers contenant des milliers — voire des dizaines de milliers — d’images s’ouvrent désormais immédiatement, sans attente. La photo cliquée s’affiche en premier, le défilement est plus fluide et les photos suivantes sont préchargées pour ne plus clignoter en noir pendant le défilement. Le démarrage est plus rapide, le titre de la fenêtre affiche le nom du fichier et la position de page, et une version avec installateur est désormais disponible.',
@@ -567,6 +603,7 @@
   })
 
   document.getElementById('download-btn').href = DOWNLOAD_URL
+  document.getElementById('download-installer-btn').href = INSTALLER_URL
   document.getElementById('support-link').href = KOFI_URL
 
   // Pulled from the Releases API rather than hardcoded, so a routine release
