@@ -348,6 +348,13 @@
   <section class="block">
     <h2 data-i18n="patchNotesHeading"></h2>
     <div class="patch-entry">
+      <div class="patch-date">2026.08.17</div>
+      <div class="patch-body">
+        <div class="patch-title" data-i18n="patchV070Title"></div>
+        <p data-i18n="patchV070Body"></p>
+      </div>
+    </div>
+    <div class="patch-entry">
       <div class="patch-date">2026.07.21</div>
       <div class="patch-body">
         <div class="patch-title" data-i18n="patchLatestTitle"></div>
@@ -401,6 +408,9 @@
       patchPrevTitle: '대용량 영상 폴더 성능 개선',
       patchPrevBody:
         '영상이 많은 폴더에서 전체화면 전환 시 발생하던 지연을 대폭 줄였고, 영상 라이브러리가 아주 클 때(1000개 이상) 일부 영상이 재생되지 않던 문제를 수정했습니다. 슬라이드쇼 중 수동으로 페이지를 넘기면 자동전환 타이머도 그 시점부터 새로 시작됩니다.',
+      patchV070Title: '수천 장 넘는 대용량 폴더도 즉시 열기',
+      patchV070Body:
+        '이미지가 수천~수만 장인 폴더도 기다림 없이 바로 열립니다. 클릭한 사진이 먼저 즉시 표시되고, 스크롤이 한결 부드러워졌으며 다음 사진들을 미리 불러와 넘길 때 검은 화면 깜빡임을 줄였습니다. 앱 시작 속도도 빨라지고 창 제목에 파일명·페이지 위치가 표시됩니다. 설치 버전(installer)도 새로 추가했습니다.',
       supportText: '이 앱이 마음에 드셨다면, ☕',
       supportCta: '커피 사주기~',
       footer: '© 2026 Yomu'
@@ -425,6 +435,9 @@
       patchPrevTitle: 'Performance improvements for large video folders',
       patchPrevBody:
         'Fixed the fullscreen-toggle delay in folders with lots of videos, and a bug where some videos in very large libraries (1000+) wouldn’t play at all. Manually navigating during a slideshow now also resets its auto-advance countdown.',
+      patchV070Title: 'Instantly open huge folders with thousands of photos',
+      patchV070Body:
+        'Folders with thousands — even tens of thousands — of images now open right away, with no wait. The photo you clicked shows first, scrolling is smoother, and upcoming photos are preloaded so they no longer flash black as you scroll. Startup is faster, the window title shows the filename and page position, and an installer build is now available too.',
       supportText: 'If you like this app, buy me a coffee ☕',
       supportCta: 'Buy me a coffee',
       footer: '© 2026 Yomu'
@@ -449,6 +462,9 @@
         '修复了视频较多的文件夹在切换全屏时的延迟问题，以及超大视频库（1000+）中部分视频完全无法播放的问题。幻灯片播放中手动翻页时，自动切换的倒计时也会重新开始。',
       downloadLabel: '下载 Windows 版',
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
+      patchV070Title: '数千张照片的超大文件夹也能瞬间打开',
+      patchV070Body:
+        '包含数千甚至上万张图片的文件夹现在可以立即打开，无需等待。先显示你点击的照片，滚动更加流畅，并会预加载接下来的照片，滚动时不再出现黑屏闪烁。启动速度更快，窗口标题会显示文件名和页码，并新增了安装版。',
       supportText: '如果你喜欢这个应用，请我喝杯咖啡吧 ☕',
       supportCta: '请我喝咖啡',
       footer: '© 2026 Yomu'
@@ -473,6 +489,9 @@
         '動画が多いフォルダで全画面切り替え時に発生していた遅延を大幅に改善し、動画ライブラリが非常に大きい場合（1000本以上）に一部の動画が再生されない問題を修正しました。スライドショー中に手動でページを送ると、自動切り替えのカウントダウンもその時点からやり直されます。',
       downloadLabel: 'Windows版をダウンロード',
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
+      patchV070Title: '数千枚を超える大容量フォルダも即座に開く',
+      patchV070Body:
+        '画像が数千〜数万枚あるフォルダも待たずにすぐ開きます。クリックした写真が先に表示され、スクロールがより滑らかになり、次の写真を先読みするのでスクロール時の黒い点滅が減りました。起動も速くなり、ウィンドウタイトルにファイル名とページ位置が表示され、インストーラー版も追加しました。',
       supportText: 'このアプリが気に入ったら、コーヒーをおごってください ☕',
       supportCta: 'コーヒーをおごる',
       footer: '© 2026 Yomu'
@@ -488,6 +507,9 @@
       formatArchivesLabel: 'Archivos comprimidos',
       downloadLabel: 'Descargar para Windows',
       downloadNote: 'Gratis · Ejecutable portátil para Windows (no requiere instalación)',
+      patchV070Title: 'Abre al instante carpetas enormes con miles de fotos',
+      patchV070Body:
+        'Las carpetas con miles —incluso decenas de miles— de imágenes ahora se abren de inmediato, sin esperas. La foto en la que hiciste clic aparece primero, el desplazamiento es más fluido y las fotos siguientes se precargan para que no parpadeen en negro al desplazarte. El inicio es más rápido, el título de la ventana muestra el nombre del archivo y la posición de página, y ahora también hay una versión con instalador.',
       supportText: 'Si te gusta esta app, invítame un café ☕',
       supportCta: 'Invitar un café',
       footer: '© 2026 Yomu'
@@ -503,6 +525,9 @@
       formatArchivesLabel: 'Archives',
       downloadLabel: 'Télécharger pour Windows',
       downloadNote: 'Gratuit · Exécutable portable Windows (aucune installation requise)',
+      patchV070Title: 'Ouvre instantanément d’énormes dossiers de milliers de photos',
+      patchV070Body:
+        'Les dossiers contenant des milliers — voire des dizaines de milliers — d’images s’ouvrent désormais immédiatement, sans attente. La photo cliquée s’affiche en premier, le défilement est plus fluide et les photos suivantes sont préchargées pour ne plus clignoter en noir pendant le défilement. Le démarrage est plus rapide, le titre de la fenêtre affiche le nom du fichier et la position de page, et une version avec installateur est désormais disponible.',
       supportText: "Si vous aimez cette appli, offrez-moi un café ☕",
       supportCta: 'Offrir un café',
       footer: '© 2026 Yomu'
