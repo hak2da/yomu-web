@@ -356,6 +356,13 @@
   <section class="block">
     <h2 data-i18n="patchNotesHeading"></h2>
     <div class="patch-entry">
+      <div class="patch-date">2026.08.22</div>
+      <div class="patch-body">
+        <div class="patch-title" data-i18n="patchV072Title"></div>
+        <p data-i18n="patchV072Body"></p>
+      </div>
+    </div>
+    <div class="patch-entry">
       <div class="patch-date">2026.08.17</div>
       <div class="patch-body">
         <div class="patch-title" data-i18n="patchV071Title"></div>
@@ -430,6 +437,9 @@
       patchPrevTitle: '대용량 영상 폴더 성능 개선',
       patchPrevBody:
         '영상이 많은 폴더에서 전체화면 전환 시 발생하던 지연을 대폭 줄였고, 영상 라이브러리가 아주 클 때(1000개 이상) 일부 영상이 재생되지 않던 문제를 수정했습니다. 슬라이드쇼 중 수동으로 페이지를 넘기면 자동전환 타이머도 그 시점부터 새로 시작됩니다.',
+      patchV072Title: '자동 업데이트 추가 (설치 버전)',
+      patchV072Body:
+        '설치 버전은 이제 새 버전이 나오면 백그라운드로 자동으로 받아서, 재시작할 때 업데이트할지 물어봅니다. 포터블 버전은 사이트에서 새로 받으면 됩니다.',
       patchV071Title: '회전된 사진이 찌그러지던 문제 수정',
       patchV071Body:
         '회전 정보(EXIF)가 있는 일부 폰 사진이 잘못된 비율로 찌그러져 보이던 문제를 고쳤습니다.',
@@ -462,6 +472,9 @@
       patchPrevTitle: 'Performance improvements for large video folders',
       patchPrevBody:
         'Fixed the fullscreen-toggle delay in folders with lots of videos, and a bug where some videos in very large libraries (1000+) wouldn’t play at all. Manually navigating during a slideshow now also resets its auto-advance countdown.',
+      patchV072Title: 'Auto-update added (installer)',
+      patchV072Body:
+        'The installed version now downloads new releases in the background and asks whether to restart to apply them. Portable users just re-download from the site.',
       patchV071Title: 'Fixed rotated photos being squished',
       patchV071Body:
         'Some phone photos with rotation (EXIF) info were shown at the wrong aspect ratio; they now display correctly.',
@@ -494,6 +507,9 @@
       downloadNote: '免费 · Windows 便携版可执行文件（无需安装）',
       downloadInstallerLabel: 'Windows Installer（安装版）',
       downloadInstallerNote: '应用启动更快 · 开始菜单快捷方式',
+      patchV072Title: '新增自动更新（安装版）',
+      patchV072Body:
+        '安装版现在会在后台自动下载新版本，并在重启时询问是否更新。便携版请从网站重新下载。',
       patchV071Title: '修复旋转照片被压扁的问题',
       patchV071Body:
         '部分带旋转信息（EXIF）的手机照片会以错误比例被压扁显示，现已修复。',
@@ -526,6 +542,9 @@
       downloadNote: '無料 · Windowsポータブル実行ファイル（インストール不要）',
       downloadInstallerLabel: 'Windows Installer（インストール版）',
       downloadInstallerNote: 'アプリの起動が速い · スタートメニューのショートカット',
+      patchV072Title: '自動アップデート追加（インストール版）',
+      patchV072Body:
+        'インストール版は新しいバージョンをバックグラウンドで自動ダウンロードし、再起動時に更新するか確認します。ポータブル版はサイトから再ダウンロードしてください。',
       patchV071Title: '回転した写真が潰れる問題を修正',
       patchV071Body:
         '回転情報（EXIF）を持つ一部のスマホ写真が誤った比率で潰れて表示される問題を修正しました。',
@@ -549,6 +568,9 @@
       downloadNote: 'Gratis · Ejecutable portátil para Windows (no requiere instalación)',
       downloadInstallerLabel: 'Windows Installer (instalación)',
       downloadInstallerNote: 'Inicio de la app más rápido · Acceso directo en el menú Inicio',
+      patchV072Title: 'Actualización automática (instalador)',
+      patchV072Body:
+        'La versión instalada ahora descarga las nuevas versiones en segundo plano y pregunta si reiniciar para aplicarlas. La versión portable se vuelve a descargar del sitio.',
       patchV071Title: 'Corregido: fotos giradas se veían aplastadas',
       patchV071Body:
         'Algunas fotos de móvil con información de rotación (EXIF) se mostraban con una proporción incorrecta; ahora se ven bien.',
@@ -572,6 +594,9 @@
       downloadNote: 'Gratuit · Exécutable portable Windows (aucune installation requise)',
       downloadInstallerLabel: 'Windows Installer (installation)',
       downloadInstallerNote: 'Démarrage de l’app plus rapide · Raccourci dans le menu Démarrer',
+      patchV072Title: 'Mise à jour automatique (installateur)',
+      patchV072Body:
+        'La version installée télécharge désormais les nouvelles versions en arrière-plan et propose de redémarrer pour les appliquer. La version portable se retélécharge depuis le site.',
       patchV071Title: 'Correction : photos pivotées écrasées',
       patchV071Body:
         'Certaines photos de téléphone avec des informations de rotation (EXIF) s’affichaient avec un mauvais ratio ; corrigé.',
